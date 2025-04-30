@@ -1,0 +1,72 @@
+/* Add this to your global styles (e.g., in a CSS file or styled components) */
+
+/* Star container for each card */
+.star-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Prevent stars from blocking clicks */
+    background-image: url('/assets/star.svg'); /* Use a small star image */
+    background-repeat: no-repeat;
+    background-size: 10px 10px;
+    animation: moveStars 5s infinite linear;
+  }
+  
+  /* Move stars animation */
+  @keyframes moveStars {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 1000px 1000px;
+    }
+  }
+  
+  /* Add multiple layers of stars */
+  .star-animation::before,
+  .star-animation::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/assets/star.svg');
+    background-repeat: no-repeat;
+    background-size: 10px 10px;
+    animation: moveStars 8s infinite linear;
+  }
+  
+  .star-animation::before {
+    animation-duration: 6s;
+    background-size: 8px 8px;
+  }
+  
+  .star-animation::after {
+    animation-duration: 7s;
+    background-size: 12px 12px;
+    opacity: 0.6;
+  }
+  
+  /* Optional: Make the stars shimmer by varying their opacity */
+  @keyframes shimmer {
+    0% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.5;
+    }
+  }
+  
+  /* Applying shimmer effect on the stars */
+  .star-animation,
+  .star-animation::before,
+  .star-animation::after {
+    animation: moveStars 10s infinite linear, shimmer 3s infinite ease-in-out;
+  }
+  
